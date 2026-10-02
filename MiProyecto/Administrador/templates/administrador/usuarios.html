@@ -1,0 +1,36 @@
+{% extends 'Administrador/index.html' %}
+{% load static %}
+
+{% block title %}
+Catálogo de Usuarios
+{% endblock title %}
+
+{% block codigoDinamico %}
+<div class="main-container">
+    <h1 style="color: var(--primary); margin-bottom: 1.5rem;">Nuestros Usuarios:</h1>
+
+    <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead>
+            <tr style="border-bottom: 2px solid var(--primary); text-align: left;">
+                <th scope="col" style="padding: 0.5rem;">ID</th>
+                <th scope="col" style="padding: 0.5rem;">Nombre de Usuario</th>
+                <th scope="col" style="padding: 0.5rem;">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí el bucle recorre la "caja" de usuarios que mandamos desde views.py -->
+            {% for user in usuario %}
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.5rem;">{{ user.id }}</td>
+                <td style="padding: 0.5rem;">{{ user.nombre_usuario }}</td>
+                <td style="padding: 0.5rem;">{{ user.email_usuario }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" style="padding: 1rem;">No hay usuarios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock codigoDinamico %}
